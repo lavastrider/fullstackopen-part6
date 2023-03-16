@@ -6,9 +6,10 @@ import index from './index'
 import counterReducer from './reducer/counterReducer'
 
 const App = () => {
+  console.log('at least we are returning something')
 
   return (
-   <p>peepee</p>  
+   <p>Why isn't there anything here?</p>  
   )
 }
 

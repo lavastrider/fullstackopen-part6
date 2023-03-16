@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import App from './app'
+import App from './App'
 import counterReducer from './reducer/counterReducer'
 
 const store = createStore(counterReducer)
