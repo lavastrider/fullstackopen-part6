@@ -19,11 +19,31 @@ const asObject = (anecdote) => {
 
 const initialState = anecdotesAtStart.map(asObject)
 
-const reducer = (state = initialState, action) => {
+const anecdoteReducer = (state = initialState, action) => {
   console.log('state now: ', state)
   console.log('action', action)
-
-  return state
+  switch (action.type) {
+  case 'ADD VOTE':
+    console.log('we are supposed to add vote here')
+    const id = action.payload.id
+    //console.log(id, 'is action payload id')
+    
+    
+    const phraseToChange = state.find((word) => word.id === id)
+    //console.log(phraseToChange, 'is phrase to change')
+    const changedPhrase = {
+      ...phraseToChange,
+      votes: phraseToChange.votes += 1
+    }
+    
+    //console.log(changedPhrase, 'is changed phrases')
+    //const testing = state.map((words) => words.id !== id ? words : changedPhrase)
+    //console.log(testing, 'is testing')
+    
+    return state.map((words) => words.id !== id ? words : changedPhrase)
+  default:
+    return state
+  }
 }
 
-export default reducer
+export default anecdoteReducer

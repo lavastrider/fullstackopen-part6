@@ -5,9 +5,7 @@ import { createStore } from 'redux'
 import counterReducer from './reducer/counterReducer'
 
 const store = createStore(counterReducer)
-//console.log(store, 'is store')
-//console.log(store.getState(), 'is store get state')
-//console.log(store.getState().good, 'is store get state good')
+
 
 const App = () => {
   return (
