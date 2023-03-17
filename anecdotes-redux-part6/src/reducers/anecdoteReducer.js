@@ -19,14 +19,29 @@ const asObject = (anecdote) => {
 
 const initialState = anecdotesAtStart.map(asObject)
 
-const anecdoteReducer = (state = initialState, action) => {
-  console.log('state now: ', state)
-  console.log('action', action)
+export const newWords = (words) => {
+  return {
+    type: 'NEW_PHRASE',
+    payload: {
+      content: words,
+      id: getId(),
+      votes: 0
+      }
+  }
+}
+
+export const toAddVote = (id) => {
+    return { type: 'ADD_VOTE', payload: id}
+  }
+
+export const anecdoteReducer = (state = initialState, action) => {
+  //console.log('state now: ', state)
+  //console.log('action', action)
   switch (action.type) {
-  case 'ADD VOTE':
-    console.log('we are supposed to add vote here')
-    const id = action.payload.id
-    //console.log(id, 'is action payload id')
+  case 'ADD_VOTE':
+    //console.log('we are supposed to add vote here')
+    const id = action.payload
+    console.log(id, 'is action payload in add vote')
     
     
     const phraseToChange = state.find((word) => word.id === id)
@@ -41,6 +56,10 @@ const anecdoteReducer = (state = initialState, action) => {
     //console.log(testing, 'is testing')
     
     return state.map((words) => words.id !== id ? words : changedPhrase)
+  case 'NEW_PHRASE':
+    console.log('we are in new phrase')
+    console.log(action.payload, 'is action payload in new phrase')
+    return state.concat(action.payload)
   default:
     return state
   }
