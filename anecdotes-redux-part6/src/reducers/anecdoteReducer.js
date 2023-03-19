@@ -21,17 +21,6 @@ const asObject = (anecdote) => {
 
 const initialState = anecdotesAtStart.map(asObject)
 
-export const newWords = (words) => {
-  return {
-    type: 'NEW_PHRASE',
-    payload: {
-      content: words,
-      id: getId(),
-      votes: 0
-      }
-  }
-}
-
 export const toAddVote = (id) => {
     return { type: 'ADD_VOTE', payload: id}
   }
@@ -50,23 +39,15 @@ const wordSlice = createSlice({
       phraseToVote.votes += 1
       //console.log(JSON.parse(JSON.stringify(state)), 'is state in addVote in wordSlice after voting') 
     },
-    newPhrase(state, action){
-     console.log(JSON.parse(JSON.stringify(state)), 'is state in newphrase in wordSlice')
+    newWords(state, action){
+     //console.log(JSON.parse(JSON.stringify(state)), 'is state in newphrase in wordSlice')
+     //console.log(action, 'is action in new words')
+     const newAnec = asObject(action.payload)
+     //console.log(newAnec, 'is new anec')
+     state.push(newAnec)
     }
   }
 })
 
-
-export const anecdoteReducer = (state = initialState, action) => {
-  switch (action.type) {
-  case 'NEW_PHRASE':
-    console.log('we are in new phrase')
-    console.log(action.payload, 'is action payload in new phrase')
-    return state.concat(action.payload)
-  default:
-    return state
-  }
-}
-
-export const { addVote } = wordSlice.actions
+export const { addVote, newWords } = wordSlice.actions
 export default wordSlice.reducer
