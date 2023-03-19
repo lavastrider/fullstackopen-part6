@@ -9,7 +9,9 @@ const Filter = () => {
   const handleChange = (event) => {
     event.preventDefault()
     const searchTerm = event.target.value
-    dispatch(filterChange(searchTerm))
+    //console.log(searchTerm, 'is search term')
+    const pass = dispatch(filterChange(searchTerm))
+    console.log(pass, 'is pass')
   }
   const style = {
     marginBottom: 10
