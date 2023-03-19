@@ -12,9 +12,7 @@ const AnecdotesForm = () => {
     //console.log('we got here first')
     dispatch(newWords(content))
     dispatch(notifAdd(content))
-    setTimeout(
-     dispatch(notifHide(content)), 10000000
-    )
+    setTimeout(()=>dispatch(notifHide(content)), 5000)
   }
 
   return (

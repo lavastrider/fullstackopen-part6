@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { addVote } from '../reducers/anecdoteReducer'
-import { notifVote } from '../reducers/notificationReducer'
+import { notifVote, notifHide } from '../reducers/notificationReducer'
 
 const Anecdotes = () => {
   //const test = useSelector(state => state.anecdotes)
@@ -31,6 +31,7 @@ const Anecdotes = () => {
   const vote = (id, words) => {
     dispatch(addVote(id))
     dispatch(notifVote(words))
+    setTimeout(()=>dispatch(notifHide(id)), 5000)
   }
   
   return (

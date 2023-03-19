@@ -24,7 +24,7 @@ const notifSlice = createSlice({
       console.log('we are in notifHide')
       console.log(action, 'is action')
       console.log(JSON.parse(JSON.stringify(state)), 'is state')
-      return "hi"
+      return " "
     
     },
     notifAdd(state, action){
