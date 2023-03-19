@@ -1,5 +1,5 @@
-import { useSelector, useDispatch } from 'react-redux'
-import { filterChange } from '../reducers/filterReducer'
+import { useDispatch } from 'react-redux'
+import { filterReducer } from '../reducers/filterReducer'
 
 
 const Filter = () => {
@@ -10,8 +10,7 @@ const Filter = () => {
     event.preventDefault()
     const searchTerm = event.target.value
     //console.log(searchTerm, 'is search term')
-    const pass = dispatch(filterChange(searchTerm))
-    console.log(pass, 'is pass')
+    dispatch(filterReducer(searchTerm))    
   }
   const style = {
     marginBottom: 10

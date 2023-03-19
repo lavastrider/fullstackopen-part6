@@ -36,6 +36,9 @@ export const toAddVote = (id) => {
     return { type: 'ADD_VOTE', payload: id}
   }
 
+
+
+
 export const anecdoteReducer = (state = initialState, action) => {
   //console.log('state now: ', state)
   //console.log('action', action)
