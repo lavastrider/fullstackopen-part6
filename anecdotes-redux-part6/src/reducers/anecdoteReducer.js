@@ -21,10 +21,6 @@ const asObject = (anecdote) => {
 
 const initialState = anecdotesAtStart.map(asObject)
 
-export const toAddVote = (id) => {
-    return { type: 'ADD_VOTE', payload: id}
-  }
-
 const wordSlice = createSlice({
   name: 'phrases',
   initialState,
