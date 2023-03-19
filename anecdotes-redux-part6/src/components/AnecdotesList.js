@@ -1,9 +1,10 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { toAddVote } from '../reducers/anecdoteReducer'
+import wordSlice, { addVote } from '../reducers/anecdoteReducer'
 
 const Anecdotes = () => {
-  //const test = useSelector(state => state)
+  //const test = useSelector(state => state.anecdotes)
   //console.log(test, 'is test in anecdotes')
+  let arrayForSort = []
   
   const words = useSelector((state) => {
     if (state.searchTerm) {
@@ -14,7 +15,9 @@ const Anecdotes = () => {
       return state.anecdotes.filter((phrase) => phrase.content.toLowerCase().includes(state.searchTerm.toLowerCase()))
     }
     //console.log(state.anecdotes, 'is state anecdotes')
-    return state.anecdotes.sort((a,b) => b.votes-a.votes)
+    arrayForSort = [...state.anecdotes]
+    //copy is needed because sort directly edits the variable
+    return arrayForSort.sort((a,b) => b.votes-a.votes)
   })
   
   //const anecdotalSort = anecdotes.anecdotes.sort((a,b) => b.votes-a.votes)
@@ -25,7 +28,7 @@ const Anecdotes = () => {
   const dispatch = useDispatch()
   
   const vote = (id) => {
-    dispatch(toAddVote(id))
+    dispatch(addVote(id))
   }
   
   return (
@@ -44,6 +47,9 @@ const Anecdotes = () => {
     </div>
   )
   
+  return (
+   <p>tee hee</p>
+  )
 }
 
 export default Anecdotes

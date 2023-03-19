@@ -36,31 +36,29 @@ export const toAddVote = (id) => {
     return { type: 'ADD_VOTE', payload: id}
   }
 
-
+const wordSlice = createSlice({
+  name: 'phrases',
+  initialState,
+  reducers: {
+    addVote(state, action){
+      //console.log(JSON.parse(JSON.stringify(state)), 'is state in addVote in wordSlice')
+      const id = action.payload
+      //console.log(id, 'is action payload in add vote')
+      const phraseToVote = state.find((word) => word.id === id)
+      //console.log(phraseToVote, 'is phrase to vote') <- proxy junk
+      //console.log(JSON.parse(JSON.stringify(phraseToVote)), 'is pTV with json')
+      phraseToVote.votes += 1
+      //console.log(JSON.parse(JSON.stringify(state)), 'is state in addVote in wordSlice after voting') 
+    },
+    newPhrase(state, action){
+     console.log(JSON.parse(JSON.stringify(state)), 'is state in newphrase in wordSlice')
+    }
+  }
+})
 
 
 export const anecdoteReducer = (state = initialState, action) => {
-  //console.log('state now: ', state)
-  //console.log('action', action)
   switch (action.type) {
-  case 'ADD_VOTE':
-    //console.log('we are supposed to add vote here')
-    const id = action.payload
-    console.log(id, 'is action payload in add vote')
-    
-    
-    const phraseToChange = state.find((word) => word.id === id)
-    //console.log(phraseToChange, 'is phrase to change')
-    const changedPhrase = {
-      ...phraseToChange,
-      votes: phraseToChange.votes += 1
-    }
-    
-    //console.log(changedPhrase, 'is changed phrases')
-    //const testing = state.map((words) => words.id !== id ? words : changedPhrase)
-    //console.log(testing, 'is testing')
-    
-    return state.map((words) => words.id !== id ? words : changedPhrase)
   case 'NEW_PHRASE':
     console.log('we are in new phrase')
     console.log(action.payload, 'is action payload in new phrase')
@@ -70,4 +68,5 @@ export const anecdoteReducer = (state = initialState, action) => {
   }
 }
 
-export default anecdoteReducer
+export const { addVote } = wordSlice.actions
+export default wordSlice.reducer
