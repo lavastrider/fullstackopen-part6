@@ -3,9 +3,9 @@ import { addVote } from '../reducers/anecdoteReducer'
 import { notifVote, notifHide } from '../reducers/notificationReducer'
 
 const Anecdotes = () => {
-  //const test = useSelector(state => state.anecdotes)
-  //console.log(test, 'is test in anecdotes')
-  let arrayForSort = []
+  const test = useSelector(state => state.anecdotes)
+  console.log(test, 'is test in anecdotes')
+  //let arrayForSort = []
   
   const words = useSelector((state) => {
     if (state.searchTerm) {
@@ -16,9 +16,10 @@ const Anecdotes = () => {
       return state.anecdotes.filter((phrase) => phrase.content.toLowerCase().includes(state.searchTerm.toLowerCase()))
     }
     //console.log(state.anecdotes, 'is state anecdotes')
-    arrayForSort = [...state.anecdotes]
+    //arrayForSort = [...state.anecdotes]
     //copy is needed because sort directly edits the variable
-    return arrayForSort.sort((a,b) => b.votes-a.votes)
+    //return arrayForSort.sort((a,b) => b.votes-a.votes)
+    //return state.anecdotes
   })
   
   //const anecdotalSort = anecdotes.anecdotes.sort((a,b) => b.votes-a.votes)
@@ -34,22 +35,24 @@ const Anecdotes = () => {
     setTimeout(()=>dispatch(notifHide(id)), 5000)
   }
   
-  return (
-    <div>
-      {words.map(anecdote =>
-        <div key={anecdote.id}>
-          <div>
-            {anecdote.content}
-          </div>
-          <div>
-            has {anecdote.votes}
-            <button onClick={() => vote(anecdote.id, anecdote.content)}>vote</button>
-          </div>
-        </div>
-      )}    
-    </div>
-  )
-  
+//  return (
+//    <div>
+//      {words.map(anecdote =>
+//        <div key={anecdote.id}>
+//          <div>
+//            {anecdote.content}
+//          </div>
+//          <div>
+//            has {anecdote.votes}
+//            <button onClick={() => vote(anecdote.id, anecdote.content)}>vote</button>
+//          </div>
+//        </div>
+//      )}    
+//    </div>
+//  )
+   return (
+    <p>glasses</p>
+   )
   return (
    <p>tee hee</p>
   )

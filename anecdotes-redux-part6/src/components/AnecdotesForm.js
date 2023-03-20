@@ -1,16 +1,19 @@
 import { useDispatch } from 'react-redux'
 import { newWords } from '../reducers/anecdoteReducer'
 import { notifAdd, notifHide } from '../reducers/notificationReducer'
+import wordService from '../services/anecdotes'
 
 const AnecdotesForm = () => {
   const dispatch = useDispatch()
   
-  const newPhrase = (event) => {
+  const newPhrase = async (event) => {
     event.preventDefault()
     const content = event.target.anecdote.value
     event.target.anecdote.value = ''
     //console.log('we got here first')
-    dispatch(newWords(content))
+    const newAnex = await wordService.createNew(content)
+    console.log(newAnex, 'is new anex in newphrase in form')
+    dispatch(newWords(newAnex))
     dispatch(notifAdd(content))
     setTimeout(()=>dispatch(notifHide(content)), 5000)
   }
