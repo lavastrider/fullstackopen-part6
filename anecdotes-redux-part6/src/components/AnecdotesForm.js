@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { newWords } from '../reducers/anecdoteReducer'
-import { notifAdd, notifHide } from '../reducers/notificationReducer'
+import { notifAdd, notifHide, setNotif } from '../reducers/notificationReducer'
 import wordService from '../services/anecdotes'
 
 const AnecdotesForm = () => {
@@ -12,8 +12,9 @@ const AnecdotesForm = () => {
     event.target.anecdote.value = ''
     //console.log('we got here first')
     dispatch(newWords(content))
-    dispatch(notifAdd(content))
-    setTimeout(()=>dispatch(notifHide(content)), 5000)
+    dispatch(setNotif(`you added ${content}`, 5))
+    //dispatch(notifAdd(content))
+    //setTimeout(()=>dispatch(notifHide(content)), 5000)
   }
 
   return (

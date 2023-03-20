@@ -4,46 +4,31 @@ const notifSlice = createSlice({
   name: 'notify',
   initialState: '',
   reducers: {
-    notifVote(state, action){
-      console.log('we are in notif reducer')
-      console.log(action.type, 'is action type in notifreducer')
-      switch (action.type){
-        case 'notify/notifVote':
-          console.log('we are in the notifReducer case')
-          console.log(action.payload, 'is action payload in notifvote')
-          const msg = "you voted for "
-          const msgAdd = msg.concat(action.payload)
-          //console.log(msgAdd, 'is msg add')
-          return msgAdd
-        default:
-          //console.log('we are in default action type case')
-          return state
-      }
-    },
     notifHide(state, action) {
       console.log('we are in notifHide')
       console.log(action, 'is action in notifhide')
       console.log(JSON.parse(JSON.stringify(state)), 'is state in notifhide')
       return " "
-    
     },
-    notifAdd(state, action){
-      console.log('we are in notifAdd')
-      //console.log(action.type, 'is action type')
-      switch (action.type) {
-        case 'notify/notifAdd':
-          //console.log('we are in the notif add case')
-          //console.log(action.payload, 'is action payload')
-          const msg = "you created "
-          const msgAdd = msg.concat(action.payload)
-          return msgAdd
-        default:
-          return state      
-      }
+    notifDisplay(state, action){
+      //console.log('we are in notifDisplay')
+      //console.log(action, 'is action in notifdisplay')
+      return action.payload
     }
   }
 })
 
 
-export const { notifVote, notifHide, notifAdd } = notifSlice.actions
+export const { notifHide, notifDisplay } = notifSlice.actions
+
+export const setNotif = (displaying, timer) => {
+  //console.log(displaying, 'is displaying in setNotif')
+  //console.log(timer, 'is timer in setnotif')
+  const timerMil = timer * 1000
+  return async dispatch => {
+    dispatch(notifDisplay(displaying))
+    setTimeout(()=> dispatch(notifHide(timerMil)), timerMil)
+  }
+}
+
 export default notifSlice.reducer
