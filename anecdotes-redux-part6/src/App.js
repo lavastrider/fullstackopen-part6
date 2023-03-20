@@ -1,13 +1,19 @@
+import { useEffect } from 'react'
 import AnecdotesForm from './components/AnecdotesForm'
 import AnecdotesList from './components/AnecdotesList'
 import Filter from './components/Filter'
 import Notification from './components/Notification'
+import wordService from './services/anecdotes'
+import { initializeWords } from './reducers/anecdoteReducer'
+import { useDispatch } from 'react-redux'
 
 const App = () => {
 
- const filterSelected = (value) => {
-   console.log(value) 
- }
+ const dispatch = useDispatch()
+ 
+ useEffect(() => {
+   dispatch(initializeWords())
+ }, [dispatch])
 
   return (
     <div>

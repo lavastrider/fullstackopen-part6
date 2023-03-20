@@ -6,11 +6,11 @@ const notifSlice = createSlice({
   reducers: {
     notifVote(state, action){
       console.log('we are in notif reducer')
-      console.log(action.type, 'is action type')
+      console.log(action.type, 'is action type in notifreducer')
       switch (action.type){
         case 'notify/notifVote':
           console.log('we are in the notifReducer case')
-          console.log(action.payload, 'is action payload')
+          console.log(action.payload, 'is action payload in notifvote')
           const msg = "you voted for "
           const msgAdd = msg.concat(action.payload)
           //console.log(msgAdd, 'is msg add')
@@ -22,8 +22,8 @@ const notifSlice = createSlice({
     },
     notifHide(state, action) {
       console.log('we are in notifHide')
-      console.log(action, 'is action')
-      console.log(JSON.parse(JSON.stringify(state)), 'is state')
+      console.log(action, 'is action in notifhide')
+      console.log(JSON.parse(JSON.stringify(state)), 'is state in notifhide')
       return " "
     
     },

@@ -11,9 +11,7 @@ const AnecdotesForm = () => {
     const content = event.target.anecdote.value
     event.target.anecdote.value = ''
     //console.log('we got here first')
-    const newAnex = await wordService.createNew(content)
-    console.log(newAnex, 'is new anex in newphrase in form')
-    dispatch(newWords(newAnex))
+    dispatch(newWords(content))
     dispatch(notifAdd(content))
     setTimeout(()=>dispatch(notifHide(content)), 5000)
   }

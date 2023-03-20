@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import wordService from '../services/anecdotes'
 
 //const anecdotesAtStart = [
 // 'If it hurts, do it more often',
@@ -36,16 +37,40 @@ const wordSlice = createSlice({
       phraseToVote.votes += 1
       //console.log(JSON.parse(JSON.stringify(state)), 'is state in addVote in wordSlice after voting') 
     },
-    newWords(state, action){
-     console.log(JSON.parse(JSON.stringify(state)), 'is state in newphrase in wordSlice')
-     console.log(action, 'is action in new words')
-     return state.concat(action.payload)
-    },
     appendAnex(state, action){
       return state.concat(action.payload)
+    },
+    replacePhrase(state, action){
+      console.log(action, 'is action in replace phrase')
+      const id = action.payload.id
+      const phraseToReplace = state.find((word) => word.id === id)
+      console.log(phraseToReplace, 'is phrasetoreplace in replace phrase')
+      phraseToReplace.votes = action.payload.votes
     }
   }
 })
 
-export const { addVote, newWords, appendAnex } = wordSlice.actions
+export const { addVote, appendAnex, replacePhrase } = wordSlice.actions
+
+export const initializeWords = () => {
+  return async dispatch => {
+    const words = await wordService.getAll()
+    dispatch(appendAnex(words))
+  }
+}
+
+export const newWords = (content) => {
+   return async dispatch => {
+     const newWord = await wordService.createNew(content)
+     dispatch(appendAnex(newWord))
+   }    
+}
+
+export const addingVote = (id) => {
+  return async dispatch => {
+    const voted = await wordService.incVote(id)
+    dispatch(replacePhrase(voted))
+  }
+}
+
 export default wordSlice.reducer
