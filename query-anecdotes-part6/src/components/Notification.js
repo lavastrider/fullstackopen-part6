@@ -4,9 +4,8 @@ import AnexContext from '../anecdotesContext'
 
 const Notification = () => {
 
-   //const [anexxer, anexDispatch] = useContext(AnexContext)
-   
-   const display = false
+   const [anex, dispatch] = useContext(AnexContext)
+   console.log(anex, 'is anex in notif')
    
   const style = {
     border: 'solid',
@@ -15,17 +14,15 @@ const Notification = () => {
     marginBottom: 5
   }
   
-  if (!display) {
-    return null  
+  if (!anex || anex === " ") {
+    return null
   } else {
-    //display exists
-    //after 5 seconds, set props.anec to null
-    setTimeout(()=> display = '', 5000)
+    setTimeout(()=> dispatch({type: "FORM_SENT", payload:" "}), 5000)
   }
 
   return (
     <div style={style}>
-      {display} 
+      {anex} 
     </div>
   )
 }

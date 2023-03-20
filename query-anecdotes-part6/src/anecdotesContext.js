@@ -1,12 +1,9 @@
 import { createContext, useReducer } from 'react'
 
 const anexReducer = (state, action) => {
-  switch (action.type) {
-    case "FORM_SENT":
-      console.log(JSON.parse(JSON.stringify(state)), 'is json json state in anexreducer')
-      console.log(action, 'is action in anexreducer')
-      return action.payload
-  }
+  //console.log(JSON.parse(JSON.stringify(state)), 'is json json state in anexreducer')
+  console.log(action, 'is action in anexreducer')
+  return action.payload
 }
 
 const AnexContext = createContext()

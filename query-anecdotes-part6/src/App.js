@@ -1,7 +1,9 @@
-import AnecdoteForm from './components/AnecdoteForm'
 import { useQuery, useMutation, useQueryClient } from 'react-query'
+import { useContext } from 'react'
 import { getAnec, updateAnec } from './requests'
+import AnecdoteForm from './components/AnecdoteForm'
 import Notification from './components/Notification'
+import AnexContext from './anecdotesContext'
 
 const App = () => {
   const queryClient = useQueryClient()
@@ -11,6 +13,7 @@ const App = () => {
         retry: 1
       }
   )
+  const [anexxer, anexDispatch] = useContext(AnexContext)
   
   const updateAnecMutation = useMutation(updateAnec, {
     onSuccess: () => {
@@ -21,6 +24,8 @@ const App = () => {
   const handleVote = (anecdote) => {
     //console.log('we are in the handle vote')
     //console.log(anecdote, 'is anecdote in handlevote before voting')
+    const msg = `you voted for ${anecdote.content}`
+    anexDispatch({ type: "FORM_SENT", payload: msg })
     updateAnecMutation.mutate({...anecdote, votes: anecdote.votes + 1})
     console.log(anecdote.content, 'is anec content in vote')
   }
