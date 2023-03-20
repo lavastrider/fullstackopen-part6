@@ -1,5 +1,5 @@
 import { useQueryClient, useMutation } from 'react-query'
-import { createAnec} from '../requests'
+import { createAnec } from '../requests'
 
 const AnecdoteForm = () => {
 
@@ -8,7 +8,8 @@ const AnecdoteForm = () => {
   const newAnecMutation = useMutation(createAnec, {
     onSuccess: (newAnec) => {
       const anex = queryClient.getQueryData('anecdotal')
-      //queryClient.setQueryData('anecotal', anecdotes.concat(newAnec))
+      //console.log(anex, 'is anex in newmutate in anecform')
+      queryClient.setQueryData('anecotal', anex.concat(newAnec))
     }    
   })
 
@@ -16,8 +17,8 @@ const AnecdoteForm = () => {
     event.preventDefault()
     const content = event.target.anecdote.value
     event.target.anecdote.value = ''
-    console.log('new anecdote')
-    //newAnecMutation.mutate({ content })
+    //console.log('new anecdote')
+    newAnecMutation.mutate({ content })
 }
 
   return (

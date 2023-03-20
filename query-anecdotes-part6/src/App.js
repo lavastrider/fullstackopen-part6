@@ -23,7 +23,7 @@ const App = () => {
         retry: 1
       }
   )
-  //console.log(result, 'is result in app')
+  console.log(result, 'is result in app')
   
   if (result.isLoading) {
     return <div>loading data...</div>
@@ -31,7 +31,9 @@ const App = () => {
     return <div>anecdote service not available due to problems in server</div> 
   }
   
+    
   const anecdotals = result.data
+  console.log(anecdotals, 'is anecdotals in app')
 
   return (
     <div>
@@ -39,7 +41,7 @@ const App = () => {
     
       <Notification />
       <AnecdoteForm />
-    
+
       {anecdotals.map(anecdote =>
         <div key={anecdote.id}>
           <div>
@@ -50,7 +52,7 @@ const App = () => {
             <button onClick={() => handleVote(anecdote)}>vote</button>
           </div>
         </div>
-      )}
+      )}    
     </div>
   )
 }
