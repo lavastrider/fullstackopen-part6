@@ -9,6 +9,7 @@ const getAll = async () => {
 
 const createNew = async (content) => {
   const object = { content }
+  object.votes = 0
   //console.log(object, 'is content in createnew in word service')
   const response = await axios.post(baseUrl, object)
   return response.data

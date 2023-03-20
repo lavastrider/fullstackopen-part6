@@ -39,14 +39,10 @@ const wordSlice = createSlice({
     newWords(state, action){
      console.log(JSON.parse(JSON.stringify(state)), 'is state in newphrase in wordSlice')
      console.log(action, 'is action in new words')
-     const newAnec = asObject(action.payload)
-     console.log(newAnec, 'is new anec')
-     const newAnecAr = [newAnec]
-     console.log(newAnecAr, 'is new anecar')
-     state.push(newAnecAr)
+     return state.concat(action.payload)
     },
     appendAnex(state, action){
-      return action.payload
+      return state.concat(action.payload)
     }
   }
 })
