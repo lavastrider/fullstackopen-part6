@@ -12,6 +12,5 @@ export const createAnec = (newAnec) => {
   axios.post(baseUrl, newAnec).then((response) => response.data)
 }
   
-export const updateAnec = (updatedAnec) => { 
+export const updateAnec = updatedAnec => 
   axios.put(`${baseUrl}/${updatedAnec.id}`, updatedAnec).then((response) => response.data)
-} 
