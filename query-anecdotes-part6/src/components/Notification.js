@@ -17,7 +17,7 @@ const Notification = () => {
   if (!anex || anex === " ") {
     return null
   } else {
-    setTimeout(()=> dispatch({type: "FORM_SENT", payload:" "}), 5000)
+    setTimeout(()=> dispatch({type: "NOTIF_CLEAR", payload:" "}), 5000)
   }
 
   return (

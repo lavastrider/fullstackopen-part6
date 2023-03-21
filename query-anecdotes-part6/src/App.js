@@ -24,10 +24,10 @@ const App = () => {
   const handleVote = (anecdote) => {
     //console.log('we are in the handle vote')
     //console.log(anecdote, 'is anecdote in handlevote before voting')
-    const msg = `you voted for ${anecdote.content}`
-    anexDispatch({ type: "FORM_SENT", payload: msg })
+    const msg = `Success! You voted for "${anecdote.content}"`
+    anexDispatch({ type: "VOTE_SENT", payload: msg })
     updateAnecMutation.mutate({...anecdote, votes: anecdote.votes + 1})
-    console.log(anecdote.content, 'is anec content in vote')
+    //console.log(anecdote.content, 'is anec content in vote')
   }
 
   //console.log(result, 'is result in app')
