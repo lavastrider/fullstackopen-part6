@@ -5,7 +5,7 @@ import AnexContext from '../anecdotesContext'
 const Notification = () => {
 
    const [anex, dispatch] = useContext(AnexContext)
-   console.log(anex, 'is anex in notif')
+   //console.log(anex, 'is anex in notif')
    
   const style = {
     border: 'solid',

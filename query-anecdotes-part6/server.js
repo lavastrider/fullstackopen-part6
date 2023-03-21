@@ -4,13 +4,12 @@ const router = jsonServer.router('db.json')
 const middlewares = jsonServer.defaults()
 
 const validator = (request, response, next) => {
-  console.log('were we ever even going to reach here')
+  console.log('why are we not here in validator')
 
   const { content } = request.body
-  console.log(content, 'is content in validator')
 
-  if (request.method==='POST' && (!content || content.length<5) ) {
-    console.log('is here where we trip?')
+  if (request.method==='POST' && (!content ||Â content.length<5) ) {
+    console.log('the entry was too short')
     return response.status(400).json({
       error: 'too short anecdote, must have length 5 or more'
     })
@@ -27,5 +26,3 @@ server.use(router)
 server.listen(3001, () => {
   console.log('JSON Server is running')
 })
-
-export default validator

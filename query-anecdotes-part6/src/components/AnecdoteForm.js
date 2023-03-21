@@ -10,8 +10,11 @@ const AnecdoteForm = () => {
   const newAnecMutation = useMutation(createAnec, {
     onSuccess: (newAnec) => {
       const anex = queryClient.getQueryData('anecdotal')
-      //console.log(anex, 'is anex in newmutate in anecform')
+      console.log(anex, 'is anex in newmutate in anecform before post request')
       queryClient.setQueryData('anecotal', anex.concat(newAnec))
+    },
+    onError: (error) => {
+      console.log('we failed the post in createanex in usemutate')
     }
   })
   
@@ -22,9 +25,9 @@ const AnecdoteForm = () => {
     const content = event.target.anecdote.value
     event.target.anecdote.value = ''
     //console.log('new anecdote')
-    const newMsg = `you created the anecdote ${content}`
-    console.log(newMsg, 'is new msg')
     newAnecMutation.mutate({ content })
+    const newMsg = `you created the anecdote ${content}`
+    //console.log(newMsg, 'is new msg')
     anexDispatch({ type: "FORM_SENT", payload: newMsg })
   }
 
