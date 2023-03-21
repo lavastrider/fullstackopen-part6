@@ -25,7 +25,8 @@ const AnecdoteForm = () => {
     const content = event.target.anecdote.value
     event.target.anecdote.value = ''
     //console.log('new anecdote')
-    newAnecMutation.mutate({ content })
+    const pizza = newAnecMutation.mutate({ content })
+    console.log(pizza, 'is pizza')
     const newMsg = `you created the anecdote ${content}`
     //console.log(newMsg, 'is new msg')
     anexDispatch({ type: "FORM_SENT", payload: newMsg })
